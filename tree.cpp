@@ -1,4 +1,6 @@
-#include<vector>
+#include<stack>
+#include<iostream>
+using namespace std;
 
 typedef struct
 {
@@ -22,31 +24,87 @@ int FindTreedeep(BinTree BT)
 int FindTreedeep(BinTree BT)
 {
 	int	deep = 0;
-	vector<BinTree>	S;
-	vector<int>	tag;
+	stack<BinTree>	S;
+	stack<int>	tag;
 	BinTree p =BT;
 	while( p!=NULL || !S.empty())
 	{
 		while(p!=NULL)
 		{
-			S.push_back(p);
-			tag.push_back(0);
+			S.push(p);
+			tag.push(0);
 			p = p->lchild;
 		}
 		if( tag.back()==1)
 		{
-			deep	= deep>S.capacity()? deep:S.capacity();
-			S.pop_back();
-			tag.pop_back();
+			deep	= deep>S.size()? deep:S.size();
+			S.pop();
+			tag.pop();
 			p 	= NULL;
 		}
 		else
 		{
-			p = S.back();
+			p = S.top();
 			p = p->rchild;
-			tag.pop_back();
-			tag.push_back(1);
+			tag.pop();
+			tag.push(1);
 		}
 	}
 	return deep;
 }
+
+void PreOrder(BinTree BT)
+{
+	stack<BinTree>	S;
+	BinTree		p = BT;
+	while( p!=NULL || !S.empty())
+	{
+		if( p!=NULL)
+		{
+			S.push(p);
+			cout<<p->value<<endl;
+			p = p->lchild;
+		}
+		else
+		{
+			p = S.top();
+			S.pop();
+			p = p->rchild;
+		}
+
+	}
+}
+void InOrder(BinTree BT)
+{
+	stack<BinTree>	S;
+	BinTree		p = BT;
+	while( p!=NULL || !S.empty())
+	{
+		if(p!=NULL)
+		{
+			S.push(p);
+			p = p->lchild;
+		}
+		else
+		{
+			p = S.top();
+			cout<<p->value<<endl;
+			S.pop();
+			p = p->rchild;
+		}
+	}
+}
+
+void PostOrder
+
+
+
+
+
+
+
+
+
+
+
+
