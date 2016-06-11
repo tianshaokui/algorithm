@@ -95,8 +95,40 @@ void InOrder(BinTree BT)
 	}
 }
 
-void PostOrder
-
+void PostOrder(BinTree BT)
+{
+	struct BiNodePost
+	{
+		BiNodePost(BinTree b, char t): biTree(b), tag(t) {}
+		BinTree biTree;
+		char tag;
+	};
+	stack<BiNodePost> S;
+	BinTree		p = BT;
+	BiNodePost	post;
+	
+	while( p!=NULL || !S.empty())
+	{
+		while(p != NULL)
+		{
+			S.push(BiNodePost(p, 'L'));
+			p = p->lchild;
+		}
+		while( !S.empty() && S.top().tag=='R')
+		{
+			post = S.top();
+			S.pop();
+			cout<<post.biTree->value<<endl;
+		}
+		if( !S.empty())
+		{
+			post = S.top();
+			post.tag = 'R';
+			p = post.biTree;
+			p = p->rchild;
+		}
+	}
+}
 
 
 
