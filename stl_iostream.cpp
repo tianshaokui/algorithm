@@ -12,7 +12,8 @@ int main()
 	copy(dList.begin(), dList.end(),ostream_iterator<double>(cout, ", "));
 	cout<<"\b\b  "<<endl;
 	//for_each(dList.begin(), dList.end(), [](double a){ return a+10;});
-	for(i=dList.begin(); i!=dList.end(); i++)
+	for(list<double>::iterator i=dList.begin(); i!=dList.end(); i++)
 		*i += 10;
+	int a = [](){return 3;}();
 	return 0;
 }
