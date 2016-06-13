@@ -1,13 +1,14 @@
 #include<stack>
 #include<iostream>
+#include<vector>
 using namespace std;
 
-typedef struct
+typedef struct BinTNode
 {
-	BinTree	*lchild;
-	BinTree	*rchild;
-	int	value;
-}BinTNode, *BinTree;
+	BinTNode	*lchild;
+	BinTNode	*rchild;
+	int		value;
+}*BinTree;
 /*
 int FindTreedeep(BinTree BT)
 {
@@ -35,7 +36,7 @@ int FindTreedeep(BinTree BT)
 			tag.push(0);
 			p = p->lchild;
 		}
-		if( tag.back()==1)
+		if( tag.top()==1)
 		{
 			deep	= deep>S.size()? deep:S.size();
 			S.pop();
@@ -95,15 +96,17 @@ void InOrder(BinTree BT)
 	}
 }
 
+
+struct BiNodePost
+{
+	BiNodePost(BinTree b=NULL, char t='0'): biTree(b), tag(t) {
+	}
+	BinTree biTree;
+	char tag;
+};
 void PostOrder(BinTree BT)
 {
-	struct BiNodePost
-	{
-		BiNodePost(BinTree b, char t): biTree(b), tag(t) {}
-		BinTree biTree;
-		char tag;
-	};
-	stack<BiNodePost> S;
+	stack<BiNodePost>S;
 	BinTree		p = BT;
 	BiNodePost	post;
 	
@@ -130,9 +133,12 @@ void PostOrder(BinTree BT)
 	}
 }
 
+vector<vector<BinTNode> >S;
 
-
-
+int main()
+{
+	return 0;
+}
 
 
 

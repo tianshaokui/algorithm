@@ -42,7 +42,7 @@ template <typename T>
 void quick_sort(T arr[], const int len)
 {
 	if( len <= 0) return;
-	Range* r = new Range[len]; int p = 0;
+	Range r[len]; int p =0;
 	r[p++] = Range(0, len-1);
 	while(p){
 		Range range(r[--p]);
@@ -59,7 +59,6 @@ void quick_sort(T arr[], const int len)
 		r[p++] = Range(range.left,left-1);
 		r[p++] = Range(left+1, range.right);
 	}
-	delete[] r;
 }
 
 template <typename T>
@@ -80,7 +79,7 @@ void insertion_sort(T arr[], const int len){
 int main()
 {
 	double dList[]={43,53.43,43.5,54,65,43,564,12,43,645,43};
-	heap_sort(dList, sizeof(dList)/sizeof(double));
+	quick_sort(dList, sizeof(dList)/sizeof(double));
 	copy(dList, dList+sizeof(dList)/sizeof(double), ostream_iterator<double>(cout, ", "));
 	cout<<"\b\b  "<<endl;
 	return 0;
